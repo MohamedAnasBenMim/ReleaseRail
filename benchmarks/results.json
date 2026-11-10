@@ -1,0 +1,7 @@
+{
+  "faulty_release": "1.1.0-faulty",
+  "final_status": "rolled_back",
+  "active_after_rollback": "1.0.0",
+  "detection_ms": 0.0059,
+  "recovery_ms": 0.0013
+}

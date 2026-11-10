@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: releaserail-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels: {app: releaserail-demo}
+  template:
+    metadata:
+      labels: {app: releaserail-demo}
+    spec:
+      securityContext: {runAsNonRoot: true}
+      containers:
+        - name: app
+          image: ghcr.io/example/releaserail-demo:latest
+          ports: [{containerPort: 8080}]
+          readinessProbe: {httpGet: {path: /, port: 8080}, periodSeconds: 5, failureThreshold: 3}
+          livenessProbe: {httpGet: {path: /, port: 8080}, periodSeconds: 10, failureThreshold: 3}
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {cpu: 250m, memory: 128Mi}
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true}

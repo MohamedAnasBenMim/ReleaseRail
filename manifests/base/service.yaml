@@ -1,0 +1,6 @@
+apiVersion: v1
+kind: Service
+metadata: {name: releaserail-demo}
+spec:
+  selector: {app: releaserail-demo}
+  ports: [{port: 80, targetPort: 8080}]

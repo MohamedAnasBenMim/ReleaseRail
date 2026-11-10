@@ -1,0 +1,12 @@
+resources:
+  - ../../base
+images:
+  - name: ghcr.io/example/releaserail-demo
+    newName: ghcr.io/mohamedanasbenmim/releaserail-demo
+    newTag: stable
+patches:
+  - target: {kind: Deployment, name: releaserail-demo}
+    patch: |-
+      - op: replace
+        path: /spec/replicas
+        value: 5
